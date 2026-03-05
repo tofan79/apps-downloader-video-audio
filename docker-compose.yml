@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  appsdlp-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appsdlp_web
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./storage:/var/www/storage
+      - ./database:/var/www/database
+    environment:
+      - APP_NAME=appsDLP
+      - APP_ENV=production
+      - APP_KEY=base64:YEWr3ekxR2Vnmmke2Dy4DUzW8AR/qmPy6LuTa/odK9s=
+      - APP_DEBUG=false
+      - APP_URL=http://localhost:8000
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/var/www/database/database.sqlite
+      - DOWNLOAD_PATH=/var/www/storage/downloads
+      - COOKIES_PATH=/var/www/storage/downloads/cookies/cookies.txt
+      - YTDLP_PATH=/usr/local/bin/yt-dlp
+      - CACHE_STORE=file
+      - SESSION_DRIVER=file
+      - QUEUE_CONNECTION=database
+      - LOG_CHANNEL=stderr
+      - LOG_LEVEL=warning
+
+  appsdlp-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appsdlp_worker
+    restart: unless-stopped
+    command: php artisan queue:work --tries=3 --timeout=0
+    volumes:
+      - ./storage:/var/www/storage
+      - ./database:/var/www/database
+    environment:
+      - APP_NAME=appsDLP
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/var/www/database/database.sqlite
+      - DOWNLOAD_PATH=/var/www/storage/downloads
+      - COOKIES_PATH=/var/www/storage/downloads/cookies/cookies.txt
+      - YTDLP_PATH=/usr/local/bin/yt-dlp
+      - CACHE_STORE=file
+      - SESSION_DRIVER=file
+      - QUEUE_CONNECTION=database
+      - LOG_CHANNEL=stderr
+      - LOG_LEVEL=warning
