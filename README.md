@@ -2,7 +2,7 @@
 
 Sebuah aplikasi web downloader sederhana, modern, dan sangat kuat berbasis **Laravel, Svelte, dan Inertia.js** yang menggunakan **yt-dlp** di balik layarnya. Aplikasi ini mendukung pengunduhan Video, Audio, dan bahkan Playlist lengkap dalam berbagai macam format dan kualitas.
 
-![Dashboard Preview](https://via.placeholder.com/1200x600.png?text=Dashboard+Preview) *(Tambahkan screenshot aplikasi Anda di sini)*
+![Dashboard Preview](https://i.imgur.com/8N5I7tX.png)
 
 ## ✨ Fitur Utama
 - **⚡ Single Page Application (SPA):** Dibangun dengan Svelte dan Inertia.js untuk navigasi lancar tanpa reload halaman.
