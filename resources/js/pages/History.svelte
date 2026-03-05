@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Link, router } from '@inertiajs/svelte';
+    import { router } from '@inertiajs/svelte';
     import AdminLayout from '../layouts/AdminLayout.svelte';
 
     interface Download {
@@ -60,18 +60,7 @@
         return `${size.toFixed(1)} ${units[unitIndex]}`;
     }
 
-    function getStatusColor(status: string): string {
-        switch (status) {
-            case 'done':
-                return 'text-green-600 dark:text-green-400';
-            case 'downloading':
-                return 'text-blue-600 dark:text-blue-400';
-            case 'error':
-                return 'text-red-600 dark:text-red-400';
-            default:
-                return 'text-gray-600 dark:text-gray-400';
-        }
-    }
+    // getStatusColor removed as it was unused
 
     function getTypeIcon(type: string): string {
         switch (type) {

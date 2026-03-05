@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { router, Link } from '@inertiajs/svelte';
+    import { router } from '@inertiajs/svelte';
     import UrlInput from '$components/UrlInput.svelte';
     import MetaPreview from '$components/MetaPreview.svelte';
     import FormatPicker from '$components/FormatPicker.svelte';
@@ -29,7 +29,6 @@
     let eta: string | null = null;
     let status = 'pending';
     let error: string | null = null;
-    let downloadedFilePath = '';
     let selectedItems: number[] = [];
 
     // Metadata
@@ -193,7 +192,7 @@
 
         isDownloading = true;
         error = null;
-        downloadedFilePath = '';
+        error = null;
 
         try {
             const response = await fetch('/download', {
@@ -251,8 +250,6 @@
                         isDownloading = false;
 
                         if (status === 'done') {
-                            downloadedFilePath = '/path/to/downloaded/file'; // Will be updated from backend
-
                             // Reload stats, files, and history real-time
                             router.reload({
                                 only: ['stats', 'downloads', 'files'],
@@ -700,7 +697,7 @@
                             <tbody
                                 class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
                             >
-                                {#each files as file}
+                                {#each files as file (file.path)}
                                     <tr
                                         class="hover:bg-gray-50 dark:hover:bg-gray-700/50"
                                     >

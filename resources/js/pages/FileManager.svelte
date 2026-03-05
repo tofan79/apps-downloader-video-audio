@@ -87,7 +87,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                            {#each files as file}
+                            {#each files as file (file.path)}
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-3">

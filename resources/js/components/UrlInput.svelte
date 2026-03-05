@@ -30,7 +30,7 @@
         value={value}
         {disabled}
         oninput={handleInput}
-        onpaste={(e) => {
+        onpaste={(_e) => {
             // Allow native paste event to process natively,
             // we no longer auto-trigger so the app won't spam reload loops
         }}
