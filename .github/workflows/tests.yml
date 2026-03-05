@@ -25,6 +25,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Set directory permissions
+        run: chmod -R 777 storage bootstrap/cache
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
